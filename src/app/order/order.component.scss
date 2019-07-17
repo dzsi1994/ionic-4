@@ -1,0 +1,20 @@
+.title {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    color: #707070;
+
+    h2 {
+        font-size: 30px;
+    }
+
+    p {
+        text-transform: uppercase;
+        margin: 0;
+    }
+}
+
+.viewButton {
+    margin-top: 40px;
+}
