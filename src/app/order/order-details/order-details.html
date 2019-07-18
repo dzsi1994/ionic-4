@@ -2,18 +2,29 @@
   <app-header></app-header>
   <ion-card>
     <ion-card-content>
-      <p>This is the order page</p>
+      <div class="row">
+        <span class="bold bold__black">B#0001451</span>
+        <span class="bold bold__red">A1AA50</span>
+      </div>
+      <div class="row">
+        <span class="">10/07/2019</span>
+        <div class="" style="text-align: center;">NINESTAR
+          <div>NS19-02</div>
+        </div>
+      </div>
+
     </ion-card-content>
   </ion-card>
   <ion-card>
-    <ion-card-content>
-      <ion-list *ngFor="let item of items">
+    <ion-card-content class="orderItems">
+      <ion-list *ngFor="let item of items" class="item">
         <ion-label text-wrap>
-          <h3 style="font-size: 25px; font-weight: bold;"><span style="color:red;">{{item.quantity}} </span>x
-            {{item.name}}</h3>
-          {{item.ref}}
-          {{item.id}}
+          <div><span class="bold bold--small bold__red">{{item.quantity}}</span> x <span
+              class="bold bold--small bold__black">{{item.name}}</span></div>
+          <div>{{item.ref}}</div>
+          <div>{{item.id}}</div>
         </ion-label>
+        <div class="line"></div>
       </ion-list>
     </ion-card-content>
   </ion-card>
