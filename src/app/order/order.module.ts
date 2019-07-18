@@ -7,9 +7,10 @@ import { OrderPage } from './order.page';
 import { OrderRoutingModule } from './order-routing.module';
 import { OrderDetailsPage } from './order-details/order-details';
 import { OrderService } from './order.service';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
-  imports: [CommonModule, FormsModule, IonicModule, OrderRoutingModule, ReactiveFormsModule],
+  imports: [CommonModule, SharedModule, FormsModule, IonicModule, OrderRoutingModule, ReactiveFormsModule],
   providers: [OrderService],
   declarations: [OrderPage, OrderDetailsPage],
 })

@@ -11,13 +11,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { HeaderComponent } from './shared/components/header/header.component';
 import { CoreModule } from './core/core.module';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
-  declarations: [AppComponent, HeaderComponent],
-  exports: [HeaderComponent],
-  imports: [CoreModule, BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule],
+  declarations: [AppComponent],
+  exports: [],
+  imports: [CoreModule, SharedModule, BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule],
   providers: [StatusBar, SplashScreen, { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
-  entryComponents: [],
+  entryComponents: [HeaderComponent],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
