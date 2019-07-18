@@ -16,7 +16,7 @@
 }
 
 .orderItems {
-    max-height: 400px;
+    max-height: 300px;
     overflow: auto;
 }
 
@@ -43,21 +43,17 @@
     }
 }
 
-/* .item {
-    padding-bottom: 10px;
-    border-bottom: 1px solid black;
-
-    &:last-of-type {
-        border: none;
-        padding: none;
-    }
-} */
-.order-item {}
-
 .line {
     height: 1px;
     background: #707070;
     width: 80%;
     margin: 0 auto;
     margin-top: 10px;
+}
+
+ion-spinner {
+    width: 150px;
+    height: 150px;
+    stroke: #444;
+    fill: #222;
 }

@@ -6,7 +6,7 @@ import { environment } from './../../../environments/environment';
 import { CrudOperations } from './../../shared/models/crud-operations.model';
 
 export abstract class CrudService<T> implements CrudOperations<T> {
-  private url: string;
+  url: string;
 
   constructor(protected http: HttpClient, protected category: string) {
     this.url = `${environment.apiUrL}/${category}`;

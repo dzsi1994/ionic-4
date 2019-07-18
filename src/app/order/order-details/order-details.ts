@@ -11,6 +11,7 @@ import { Location } from '@angular/common';
 export class OrderDetailsPage implements OnInit {
   id: string;
   items: any[] = [];
+  loading = false;
   constructor(private route: ActivatedRoute, private location: Location, private orderService: OrderService) {}
 
   ngOnInit() {
@@ -25,7 +26,9 @@ export class OrderDetailsPage implements OnInit {
     });
   } */
   getOrderDetails(orderId: any) {
+    this.loading = true;
     this.orderService.getAll().subscribe((res: any) => {
+      this.loading = false;
       this.items = res;
     });
   }

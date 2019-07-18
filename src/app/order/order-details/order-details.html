@@ -17,15 +17,20 @@
   </ion-card>
   <ion-card>
     <ion-card-content class="orderItems">
-      <ion-list *ngFor="let item of items" class="item">
-        <ion-label text-wrap>
-          <div><span class="bold bold--small bold__red">{{item.quantity}}</span> x <span
-              class="bold bold--small bold__black">{{item.name}}</span></div>
-          <div>{{item.ref}}</div>
-          <div>{{item.id}}</div>
-        </ion-label>
-        <div class="line"></div>
-      </ion-list>
+      <div *ngIf="loading" style="text-align: center;">
+        <ion-spinner name="crescent"></ion-spinner>
+      </div>
+      <ng-container *ngIf="!loading">
+        <ion-list *ngFor="let item of items" class="item">
+          <ion-label text-wrap>
+            <div><span class="bold bold--small bold__red">{{item.quantity}}</span> x <span
+                class="bold bold--small bold__black">{{item.name}}</span></div>
+            <div>{{item.ref}}</div>
+            <div>{{item.id}}</div>
+          </ion-label>
+          <div class="line"></div>
+        </ion-list>
+      </ng-container>
     </ion-card-content>
   </ion-card>
 </ion-content>
