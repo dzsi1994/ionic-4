@@ -13,10 +13,8 @@ import { Router } from '@angular/router';
 import { ToastController } from '@ionic/angular';
 
 @Injectable()
-export class TokenInterceptor implements HttpInterceptor {
-  constructor(private router: Router, public toastController: ToastController) {
-    console.log('tokeninterceptor');
-  }
+export class JwtInterceptor implements HttpInterceptor {
+  constructor(private router: Router, public toastController: ToastController) {}
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     console.log(request.url);
@@ -45,7 +43,6 @@ export class TokenInterceptor implements HttpInterceptor {
     return next.handle(request).pipe(
       map((event: HttpEvent<any>) => {
         if (event instanceof HttpResponse) {
-          console.log('event--->>>', event);
         }
         return event;
       }),
