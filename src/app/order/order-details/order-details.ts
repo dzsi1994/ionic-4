@@ -1,7 +1,6 @@
 import { OrderService } from './../order.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Location } from '@angular/common';
 import { NavController } from '@ionic/angular';
 
 @Component({
@@ -15,7 +14,6 @@ export class OrderDetailsPage implements OnInit {
   loading = false;
   constructor(
     private route: ActivatedRoute,
-    private location: Location,
     private orderService: OrderService,
     private navController: NavController,
   ) {}
@@ -40,8 +38,5 @@ export class OrderDetailsPage implements OnInit {
       this.loading = false;
       this.items = res;
     });
-  }
-  navigateBack() {
-    this.location.back();
   }
 }

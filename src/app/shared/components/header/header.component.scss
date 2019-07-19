@@ -4,6 +4,7 @@
     flex-direction: column;
     justify-content: center;
     color: #707070;
+    position: relative;
 
     h2 {
         font-size: 30px;
@@ -14,4 +15,17 @@
         text-transform: uppercase;
         margin: 0;
     }
+
+    .back {
+        position: absolute;
+        left: 10px;
+        top: 30px;
+    }
+}
+
+ion-icon {
+    width: 30px;
+    height: 30px;
+    stroke: #444;
+    fill: #707070;
 }

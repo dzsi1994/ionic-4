@@ -1,5 +1,4 @@
 import { Component, ViewChild, OnDestroy, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { debounceTime } from 'rxjs/operators';
 import { NavController } from '@ionic/angular';
@@ -14,7 +13,7 @@ export class OrderPage implements OnDestroy, OnInit {
   detailsForm: FormGroup;
   @ViewChild('myInput') myInput;
 
-  constructor(private router: Router, public formBuilder: FormBuilder, private navController: NavController) {}
+  constructor(public formBuilder: FormBuilder, private navController: NavController) {}
   ngOnInit() {
     this.buildForm();
   }
