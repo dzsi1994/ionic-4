@@ -7,12 +7,6 @@ const routes: Routes = [
   {
     path: '',
     component: HomePage,
-    /* children: [
-      {
-        path: 'order',
-        loadChildren: './order/order.module#OrderPageModule',
-      },
-    ], */
   },
 ];
 

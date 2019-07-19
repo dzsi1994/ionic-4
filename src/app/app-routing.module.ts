@@ -1,12 +1,10 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
-import { HomePageModule } from './home/home.module';
-import { OrderPageModule } from './order/order.module';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
-  { path: 'home', loadChildren: () => HomePageModule },
-  { path: 'order', loadChildren: () => OrderPageModule },
+  { path: 'home', loadChildren: './home/home.module#HomePageModule' },
+  { path: 'order', loadChildren: './order/order.module#OrderPageModule' },
 ];
 
 @NgModule({
