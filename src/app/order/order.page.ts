@@ -1,26 +1,28 @@
-import { Component, ViewChild, OnDestroy } from '@angular/core';
+import { Component, ViewChild, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { debounceTime } from 'rxjs/operators';
+import { NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-order',
   templateUrl: 'order.component.html',
   styleUrls: ['order.component.scss'],
 })
-export class OrderPage implements OnDestroy {
+export class OrderPage implements OnDestroy, OnInit {
   name: any;
   detailsForm: FormGroup;
   @ViewChild('myInput') myInput;
 
-  constructor(private router: Router, public formBuilder: FormBuilder) {
+  constructor(private router: Router, public formBuilder: FormBuilder, private navController: NavController) {}
+  ngOnInit() {
     this.buildForm();
   }
   navigate(barcode: any) {
     if (!barcode.barCode) {
       return;
     }
-    this.router.navigate([`order`, barcode.barCode]);
+    this.navController.navigateRoot([`order`, barcode.barCode]);
   }
   buildForm() {
     this.detailsForm = this.formBuilder.group({
@@ -28,7 +30,5 @@ export class OrderPage implements OnDestroy {
     });
     this.detailsForm.valueChanges.pipe(debounceTime(300)).subscribe(res => this.navigate(res));
   }
-  ngOnDestroy() {
-    console.log('OrderPage destroyed');
-  }
+  ngOnDestroy() {}
 }
