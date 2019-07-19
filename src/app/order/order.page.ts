@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { debounceTime } from 'rxjs/operators';
@@ -8,7 +8,7 @@ import { debounceTime } from 'rxjs/operators';
   templateUrl: 'order.component.html',
   styleUrls: ['order.component.scss'],
 })
-export class OrderPage {
+export class OrderPage implements OnDestroy {
   name: any;
   detailsForm: FormGroup;
   @ViewChild('myInput') myInput;
@@ -27,5 +27,8 @@ export class OrderPage {
       barCode: ['', Validators.required],
     });
     this.detailsForm.valueChanges.pipe(debounceTime(300)).subscribe(res => this.navigate(res));
+  }
+  ngOnDestroy() {
+    console.log('OrderPage destroyed');
   }
 }
