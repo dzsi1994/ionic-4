@@ -1,0 +1,59 @@
+.title {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    color: #707070;
+
+    h2 {
+        font-size: 30px;
+    }
+
+    p {
+        text-transform: uppercase;
+        margin: 0;
+    }
+}
+
+.orderItems {
+    max-height: 300px;
+    overflow: auto;
+}
+
+.row {
+    display: flex;
+    justify-content: space-between;
+}
+
+.bold {
+    text-transform: uppercase;
+    font-size: 18px;
+    font-weight: bold;
+
+    &__black {
+        color: black;
+    }
+
+    &__red {
+        color: red;
+    }
+
+    &--small {
+        font-size: 14px;
+    }
+}
+
+.line {
+    height: 1px;
+    background: #707070;
+    width: 80%;
+    margin: 0 auto;
+    margin-top: 10px;
+}
+
+ion-spinner {
+    width: 150px;
+    height: 150px;
+    stroke: #444;
+    fill: #222;
+}

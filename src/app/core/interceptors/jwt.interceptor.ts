@@ -17,7 +17,6 @@ export class JwtInterceptor implements HttpInterceptor {
   constructor(private router: Router, public toastController: ToastController) {}
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    console.log(request.url);
     const token = localStorage.getItem('token');
 
     if (token) {
