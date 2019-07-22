@@ -16,14 +16,14 @@ export class PublishPage implements OnInit {
   constructor(private route: ActivatedRoute, private orderService: OrderService, private formBuilder: FormBuilder) {}
 
   ngOnInit() {
-    this.buildForm();
+    this.detailsForm = this.buildForm();
     this.id = this.route.snapshot.paramMap.get('orderId');
     if (this.id) {
       // this.getOrderDetails(this.id);
     }
   }
-  buildForm() {
-    this.detailsForm = this.formBuilder.group({
+  buildForm(): FormGroup {
+    return this.formBuilder.group({
       first: ['', Validators.required],
       second: ['', Validators.required],
     });

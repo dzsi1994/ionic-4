@@ -15,7 +15,8 @@ export class OrderPage implements OnDestroy, OnInit {
 
   constructor(public formBuilder: FormBuilder, private navController: NavController) {}
   ngOnInit() {
-    this.buildForm();
+    this.detailsForm = this.buildForm();
+    this.detailsForm.valueChanges.pipe(debounceTime(300)).subscribe(res => this.navigate(res));
   }
   navigate(barcode: any) {
     if (!barcode.barCode) {
@@ -23,11 +24,10 @@ export class OrderPage implements OnDestroy, OnInit {
     }
     this.navController.navigateRoot([`order`, barcode.barCode]);
   }
-  buildForm() {
-    this.detailsForm = this.formBuilder.group({
+  buildForm(): FormGroup {
+    return this.formBuilder.group({
       barCode: ['', Validators.required],
     });
-    this.detailsForm.valueChanges.pipe(debounceTime(300)).subscribe(res => this.navigate(res));
   }
   ngOnDestroy() {}
 }
