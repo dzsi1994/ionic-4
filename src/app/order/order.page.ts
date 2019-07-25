@@ -17,9 +17,10 @@ export class OrderPage implements OnDestroy, OnInit {
   constructor(public formBuilder: FormBuilder, private navController: NavController) {}
   ngOnInit() {
     this.detailsForm = this.buildForm();
-    this.detailsForm.valueChanges.pipe(debounceTime(300)).subscribe(res => this.navigate(res));
+    this.detailsForm.valueChanges.pipe(debounceTime(300)).subscribe(res => this.navigate());
   }
-  navigate(barcode: any) {
+  navigate() {
+    const barcode = this.detailsForm.get('barCode').value;
     if (!barcode.barCode) {
       return;
     }
