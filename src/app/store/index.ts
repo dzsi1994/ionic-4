@@ -16,12 +16,6 @@ export interface GlobalState {
 export interface State {
   globalState: GlobalState;
 }
-export const selectGlobalFeature = createFeatureSelector<State, GlobalState>('globalState');
-
-export const selectIsLoading = createSelector(
-  selectGlobalFeature,
-  (state: GlobalState) => state.isLoading,
-);
 
 export const reducers: ActionReducerMap<State> = {
   globalState: fromGlobalReducer.reducer,

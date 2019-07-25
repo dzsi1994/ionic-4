@@ -5,9 +5,10 @@ import { NavController } from '@ionic/angular';
 import { debounceTime } from 'rxjs/operators';
 
 import { Store } from '@ngrx/store';
-import { State, selectIsLoading } from './../store/index';
+import { State } from './../store/index';
 import { loadingSetTrue, loadingSetFalse } from '../store/action';
 import { Observable } from 'rxjs';
+import { selectIsLoading } from '../store/reducers/global.reducer';
 
 @Component({
   selector: 'app-order',
@@ -33,10 +34,10 @@ export class OrderPage implements OnDestroy, OnInit {
   }
   navigate() {
     const barcode = this.detailsForm.get('barCode').value;
-    if (!barcode.barCode) {
+    if (!barcode) {
       return;
     }
-    this.navController.navigateRoot([`order`, barcode.barCode]);
+    this.navController.navigateRoot([`order`, barcode]);
   }
   buildForm(): FormGroup {
     return this.formBuilder.group({

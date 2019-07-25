@@ -1,5 +1,6 @@
+import { State } from './../index';
 import { loadingSetFalse, loadingSetTrue, loadingToggle } from '../action';
-import { createReducer, on, Action, State } from '@ngrx/store';
+import { createReducer, on, Action, createSelector, createFeatureSelector } from '@ngrx/store';
 
 export interface GlobalState {
   isLoading: boolean;
@@ -11,7 +12,7 @@ export const initialState: GlobalState = {
 
 const featureReducer = createReducer(
   initialState,
-  on(loadingToggle, state => ({ ...state, isLoading: !state.isLoading })),
+  on(loadingToggle, state => ({ isLoading: !state.isLoading })),
   on(loadingSetFalse, (state, { loading }) => ({
     ...state,
     isLoading: loading,
@@ -20,6 +21,12 @@ const featureReducer = createReducer(
     ...state,
     isLoading: loading,
   })),
+);
+export const selectGlobalFeature = createFeatureSelector<State, GlobalState>('globalState');
+
+export const selectIsLoading = createSelector(
+  selectGlobalFeature,
+  (state: GlobalState) => state.isLoading,
 );
 
 export function reducer(state: any | undefined, action: Action) {
