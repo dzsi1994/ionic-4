@@ -1,14 +1,15 @@
 import { Component, ViewChild, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NavController } from '@ionic/angular';
+import { Store } from '@ngrx/store';
 
 import { debounceTime } from 'rxjs/operators';
 
-import { Store } from '@ngrx/store';
 import { State } from './../store/index';
-import { loadingSetTrue, loadingSetFalse } from '../store/action';
+import { setLoading, setBarCode } from '../store/action';
 import { Observable } from 'rxjs';
 import { selectIsLoading } from '../store/reducers/global.reducer';
+import { untilDestroyed } from 'ngx-take-until-destroy';
 
 @Component({
   selector: 'app-order',
@@ -25,7 +26,7 @@ export class OrderPage implements OnDestroy, OnInit {
   ngOnInit() {
     this.store
       .select(selectIsLoading)
-      .pipe()
+      .pipe(untilDestroyed(this))
       .subscribe(res => {
         this.loading$ = res;
       });
@@ -37,6 +38,7 @@ export class OrderPage implements OnDestroy, OnInit {
     if (!barcode) {
       return;
     }
+    this.store.dispatch(setBarCode({ barCode: barcode }));
     this.navController.navigateRoot([`order`, barcode]);
   }
   buildForm(): FormGroup {
@@ -45,10 +47,10 @@ export class OrderPage implements OnDestroy, OnInit {
     });
   }
   loadingTrue(loading: boolean) {
-    this.store.dispatch(loadingSetTrue({ loading }));
+    this.store.dispatch(setLoading({ loading }));
   }
   loadingFalse(loading: boolean) {
-    this.store.dispatch(loadingSetFalse({ loading }));
+    this.store.dispatch(setLoading({ loading }));
   }
   ngOnDestroy() {}
 }

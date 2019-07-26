@@ -1,15 +1,29 @@
-import { reducer, initialState } from './global.reducer';
-import { loadingToggle, loadingSetTrue } from '../action';
+import { reducer } from './global.reducer';
+import { loadingToggle, setLoading, setBarCode } from '../action';
 import * as fromRootReducer from './global.reducer';
 
 describe('Global Reducer TESTS: ', () => {
+  it('should return barCode: 2123445', () => {
+    const { initialState } = fromRootReducer;
+    const action = setBarCode({ barCode: '2123445' });
+    const state = fromRootReducer.reducer(initialState, action);
+    expect(state.barCode).toBe('2123445');
+  });
   it('should have a isLoading set to true', () => {
-    const action = loadingSetTrue({ loading: true });
-    const action2 = loadingSetTrue({ loading: false });
-    const result = reducer(initialState, action);
-    const result2 = reducer(initialState, action2);
-    expect(result2).toEqual({
+    const { initialState } = fromRootReducer;
+    const action = setLoading({ loading: true });
+    const state = reducer(initialState, action);
+    expect(state.isLoading).toBe(true);
+  });
+
+  it('should have barCode set to 2123445 and loading to true', () => {
+    const { initialState } = fromRootReducer;
+    const action = setBarCode({ barCode: '2123445' });
+    const state = reducer(initialState, action);
+    expect(state).toEqual({
       isLoading: false,
+      barCode: '2123445',
     });
+    expect(state.barCode).toBe('2123445');
   });
 });

@@ -1,25 +1,27 @@
 import { State } from './../index';
-import { loadingSetFalse, loadingSetTrue, loadingToggle } from '../action';
+import { setLoading, loadingToggle, setBarCode } from '../action';
 import { createReducer, on, Action, createSelector, createFeatureSelector } from '@ngrx/store';
 
 export interface GlobalState {
   isLoading: boolean;
+  barCode: string;
 }
 
 export const initialState: GlobalState = {
   isLoading: false,
+  barCode: '',
 };
 
-const featureReducer = createReducer(
+const globalStateReducer = createReducer(
   initialState,
-  on(loadingToggle, state => ({ isLoading: !state.isLoading })),
-  on(loadingSetFalse, (state, { loading }) => ({
+  on(loadingToggle, state => ({ ...state, isLoading: !state.isLoading })),
+  on(setLoading, (state, { loading }) => ({
     ...state,
     isLoading: loading,
   })),
-  on(loadingSetTrue, (state, { loading }) => ({
+  on(setBarCode, (state, { barCode }) => ({
     ...state,
-    isLoading: loading,
+    barCode,
   })),
 );
 export const selectGlobalFeature = createFeatureSelector<State, GlobalState>('globalState');
@@ -29,6 +31,11 @@ export const selectIsLoading = createSelector(
   (state: GlobalState) => state.isLoading,
 );
 
-export function reducer(state: any | undefined, action: Action) {
-  return featureReducer(state, action);
+export const selectBarCode = createSelector(
+  selectGlobalFeature,
+  (state: GlobalState) => state.barCode,
+);
+
+export function reducer(state: GlobalState | undefined, action: Action) {
+  return globalStateReducer(state, action);
 }

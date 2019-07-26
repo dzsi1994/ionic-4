@@ -9,12 +9,8 @@ import {
 import { environment } from '../../environments/environment';
 import * as fromGlobalReducer from './reducers/global.reducer';
 
-export interface GlobalState {
-  isLoading: boolean;
-}
-
 export interface State {
-  globalState: GlobalState;
+  globalState: fromGlobalReducer.GlobalState;
 }
 
 export const reducers: ActionReducerMap<State> = {
