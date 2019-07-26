@@ -3,6 +3,13 @@ import { loadingToggle, setLoading, setBarCode } from '../action';
 import * as fromRootReducer from './global.reducer';
 
 describe('Global Reducer TESTS: ', () => {
+  it('should have loading toggled so is true', () => {
+    const { initialState } = fromRootReducer;
+    const action = loadingToggle();
+    const state = reducer(initialState, action);
+    expect(state.isLoading).toBe(true);
+  });
+
   it('should return barCode: 2123445', () => {
     const { initialState } = fromRootReducer;
     const action = setBarCode({ barCode: '2123445' });

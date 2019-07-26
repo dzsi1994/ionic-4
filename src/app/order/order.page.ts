@@ -46,10 +46,7 @@ export class OrderPage implements OnDestroy, OnInit {
       barCode: ['', Validators.required],
     });
   }
-  loadingTrue(loading: boolean) {
-    this.store.dispatch(setLoading({ loading }));
-  }
-  loadingFalse(loading: boolean) {
+  setLoading(loading: boolean) {
     this.store.dispatch(setLoading({ loading }));
   }
   ngOnDestroy() {}

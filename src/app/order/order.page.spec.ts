@@ -53,7 +53,7 @@ describe('OrderPage', () => {
   }));
 
   it('should show loading false', async () => {
-    const d = spyOn(comp, 'loadingTrue');
+    const d = spyOn(comp, 'setLoading');
     clickByCSS('.true');
     expect(d).toHaveBeenCalled();
     // expect(getLoadingText()).toBe('true');

@@ -11,13 +11,14 @@ import { Observable, throwError } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { ToastController } from '@ionic/angular';
+import { environment } from 'src/environments/environment.prod';
 
 @Injectable()
 export class JwtInterceptor implements HttpInterceptor {
   constructor(private router: Router, public toastController: ToastController) {}
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    const token = localStorage.getItem('token');
+    const token = environment.token;
 
     if (token) {
       request = request.clone({
