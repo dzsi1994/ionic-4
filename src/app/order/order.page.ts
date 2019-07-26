@@ -31,7 +31,12 @@ export class OrderPage implements OnDestroy, OnInit {
         this.loading$ = res;
       });
     this.detailsForm = this.buildForm();
-    this.detailsForm.valueChanges.pipe(debounceTime(300)).subscribe(res => this.navigate());
+    this.detailsForm.valueChanges
+      .pipe(
+        untilDestroyed(this),
+        debounceTime(300),
+      )
+      .subscribe(res => this.navigate());
   }
   navigate() {
     const barcode = this.detailsForm.get('barCode').value;
