@@ -24,20 +24,24 @@ export class OrderDetailsPage implements OnInit, OnDestroy {
   ngOnInit() {
     this.id = this.route.snapshot.paramMap.get('orderId');
     if (this.id) {
-      this.getOrderDetails(this.id);
+      this.getOrderDetails();
     }
   }
   navigate() {
     this.navController.navigateForward(`order/${this.id}/publish`);
   }
-  getOrderDetails(orderId: string) {
+  getOrderDetails() {
     this.loading = true;
-    (this.items$ = this.orderService.get(this.id).pipe(
-      tap(_ => {
-        this.loading = false;
-      }),
-    )),
-      map((res: any) => res.data);
+    this.orderService
+      .get(this.id)
+      .pipe(
+        untilDestroyed(this),
+        tap(_ => {
+          this.loading = false;
+        }),
+        map((res: any) => res.Data),
+      )
+      .subscribe(res => (this.items$ = res));
   }
 
   ngOnDestroy() {}

@@ -17,6 +17,7 @@ export abstract class CrudService<T> implements CrudOperations<T> {
   }
 
   update(path: string, t: T, options?: object): Observable<T> {
+    console.log(t);
     return this.http.put<T>(`${this.url}/${this.token}/${path}`, t);
   }
 

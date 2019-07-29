@@ -1,13 +1,13 @@
 <ion-content>
   <app-header></app-header>
   <ion-card>
-    <ion-card-content *ngIf="items$ | async as items">
+    <ion-card-content *ngIf="items$ as items">
       <div class="row">
         <span class="bold bold__black">{{items.Reference}}</span>
         <span class="bold bold__red">{{items.Location}}</span>
       </div>
       <div class="row">
-        <span class="">{{items.ModificationDate}}</span>
+        <span class="">{{items.ModificationDate | date: 'dd/MM/yyyy' }}</span>
         <!-- <div class="" style="text-align: center;">NINESTAR
           <div>NS19-02</div>
         </div> -->
@@ -20,7 +20,7 @@
       <div *ngIf="loading" style="text-align: center;">
         <ion-spinner name="crescent"></ion-spinner>
       </div>
-      <ng-container *ngIf="items$ | async as items">
+      <ng-container *ngIf="items$ as items">
         <ion-list *ngFor="let item of items.Detail; let last = last;" class="item">
           <ion-label text-wrap>
             <div><span class="bold bold--small bold__red">{{item.Quantity}}</span> x <span
