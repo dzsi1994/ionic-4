@@ -17,7 +17,6 @@ export abstract class CrudService<T> implements CrudOperations<T> {
   }
 
   update(path: string, t: T, options?: object): Observable<T> {
-    console.log(t);
     return this.http.put<T>(`${this.url}/${this.token}/${path}`, t);
   }
 
@@ -30,6 +29,6 @@ export abstract class CrudService<T> implements CrudOperations<T> {
   }
 
   delete(path: string, options?: object): Observable<T> {
-    return this.http.delete<T>(this.url + '/' + path);
+    return this.http.delete<T>(`${this.url}/${this.token}/${path}`);
   }
 }

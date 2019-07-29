@@ -1,7 +1,7 @@
 <ion-content>
   <app-header></app-header>
   <ion-card>
-    <ion-card-content *ngIf="items$ as items">
+    <ion-card-content *ngIf="items && !errors.length">
       <div class="row">
         <span class="bold bold__black">{{items.Reference}}</span>
         <span class="bold bold__red">{{items.Location}}</span>
@@ -20,7 +20,7 @@
       <div *ngIf="loading" style="text-align: center;">
         <ion-spinner name="crescent"></ion-spinner>
       </div>
-      <ng-container *ngIf="items$ as items">
+      <ng-container *ngIf="items && !errors.length">
         <ion-list *ngFor="let item of items.Detail; let last = last;" class="item">
           <ion-label text-wrap>
             <div><span class="bold bold--small bold__red">{{item.Quantity}}</span> x <span
@@ -31,14 +31,19 @@
           <div class="line" *ngIf="!last"></div>
         </ion-list>
       </ng-container>
+      <ion-row *ngIf="errors.length">
+        <ion-col size="12">
+          <p *ngFor="let item of errors">{{item.Text}}</p>
+        </ion-col>
+      </ion-row>
     </ion-card-content>
   </ion-card>
-  <ion-row>
+  <ion-row *ngIf="items && !errors.length">
     <ion-col size="6">
       <ion-button color="primary" shape="round" expand="full" (click)="navigate()">Ubicar</ion-button>
     </ion-col>
     <ion-col size="6">
-      <ion-button color="secondary" shape="round" expand="full">Desubicar</ion-button>
+      <ion-button color="secondary" shape="round" expand="full" (click)="presentAlertConfirm()">Delete</ion-button>
     </ion-col>
     <ion-col size="6">
       <ion-button color="tertiary" shape="round" expand="full">Reponer</ion-button>
