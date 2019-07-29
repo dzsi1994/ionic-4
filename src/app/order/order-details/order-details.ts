@@ -33,6 +33,9 @@ export class OrderDetailsPage implements OnInit, OnDestroy {
   navigate() {
     this.navController.navigateForward(`order/${this.id}/publish`);
   }
+  navigateToEdit() {
+    this.navController.navigateForward(`order/${this.id}/edit`);
+  }
   getOrderDetails() {
     this.loading = true;
     this.orderService
