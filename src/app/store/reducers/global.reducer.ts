@@ -24,6 +24,7 @@ const globalStateReducer = createReducer(
     barCode,
   })),
 );
+
 export const selectGlobalFeature = createFeatureSelector<State, GlobalState>('globalState');
 
 export const selectIsLoading = createSelector(

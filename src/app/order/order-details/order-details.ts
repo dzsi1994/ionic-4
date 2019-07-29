@@ -4,7 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { NavController } from '@ionic/angular';
 import { untilDestroyed } from 'ngx-take-until-destroy';
 import { Observable } from 'rxjs';
-import { tap } from 'rxjs/operators';
+import { tap, map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-order-details',
@@ -32,12 +32,12 @@ export class OrderDetailsPage implements OnInit, OnDestroy {
   }
   getOrderDetails(orderId: string) {
     this.loading = true;
-    console.log(orderId);
-    this.items$ = this.orderService.getAll().pipe(
+    (this.items$ = this.orderService.get(this.id).pipe(
       tap(_ => {
         this.loading = false;
       }),
-    );
+    )),
+      map((res: any) => res.data);
   }
 
   ngOnDestroy() {}

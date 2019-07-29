@@ -1,16 +1,16 @@
 <ion-content>
   <app-header></app-header>
   <ion-card>
-    <ion-card-content>
+    <ion-card-content *ngIf="items$ | async as items">
       <div class="row">
-        <span class="bold bold__black">B#0001451</span>
-        <span class="bold bold__red">A1AA50</span>
+        <span class="bold bold__black">{{items.Reference}}</span>
+        <span class="bold bold__red">{{items.Location}}</span>
       </div>
       <div class="row">
-        <span class="">10/07/2019</span>
-        <div class="" style="text-align: center;">NINESTAR
+        <span class="">{{items.ModificationDate}}</span>
+        <!-- <div class="" style="text-align: center;">NINESTAR
           <div>NS19-02</div>
-        </div>
+        </div> -->
       </div>
 
     </ion-card-content>
@@ -21,12 +21,12 @@
         <ion-spinner name="crescent"></ion-spinner>
       </div>
       <ng-container *ngIf="items$ | async as items">
-        <ion-list *ngFor="let item of items; let last = last;" class="item">
+        <ion-list *ngFor="let item of items.Detail; let last = last;" class="item">
           <ion-label text-wrap>
-            <div><span class="bold bold--small bold__red">{{item.quantity}}</span> x <span
-                class="bold bold--small bold__black">{{item.name}}</span></div>
-            <div>{{item.ref}}</div>
-            <div>{{item.id}}</div>
+            <div><span class="bold bold--small bold__red">{{item.Quantity}}</span> x <span
+                class="bold bold--small bold__black">{{item.Description}}</span></div>
+            <div>{{item.Barcode}}</div>
+            <div>{{item.Sku}}</div>
           </ion-label>
           <div class="line" *ngIf="!last"></div>
         </ion-list>

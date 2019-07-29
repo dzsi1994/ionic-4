@@ -20,16 +20,24 @@ export class PublishPage implements OnInit {
     this.detailsForm = this.buildForm();
     this.id = this.route.snapshot.paramMap.get('orderId');
     if (this.id) {
-      // this.getOrderDetails(this.id);
+      this.detailsForm.patchValue({
+        Barcode: this.id,
+      });
     }
   }
   buildForm(): FormGroup {
     return this.formBuilder.group({
-      first: ['', Validators.required],
-      second: ['', Validators.required],
+      Barcode: [{ value: '', disabled: true }, Validators.required],
+      location: ['', Validators.required],
     });
   }
   onSubmit() {
-    console.log(this.detailsForm.value);
+    const data = this.detailsForm.getRawValue();
+    const location = {
+      location: this.detailsForm.value.location,
+    };
+    this.orderService.update(`location/${data.Barcode}`, location).subscribe(res => {
+      console.log(res);
+    });
   }
 }

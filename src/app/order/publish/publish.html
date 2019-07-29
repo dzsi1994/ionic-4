@@ -5,21 +5,21 @@
       <form [formGroup]="detailsForm" (ngSubmit)="onSubmit()">
         <ion-item>
           <ion-label>First</ion-label>
-          <ion-input formControlName="first"></ion-input>
+          <ion-input formControlName="Barcode"></ion-input>
         </ion-item>
         <ion-item>
           <ion-label>Second</ion-label>
-          <ion-input formControlName="second"></ion-input>
+          <ion-input formControlName="location"></ion-input>
         </ion-item>
+        <ion-row>
+          <ion-col size="6">
+            <ion-button color="tertiary" shape="round" type="button" expand="full">Reponer</ion-button>
+          </ion-col>
+          <ion-col size="6">
+            <ion-button color="success" shape="round" type="submit" expand="full">Editar</ion-button>
+          </ion-col>
+        </ion-row>
       </form>
     </ion-card-content>
   </ion-card>
-  <ion-row>
-    <ion-col size="6">
-      <ion-button color="tertiary" shape="round" expand="full">Reponer</ion-button>
-    </ion-col>
-    <ion-col size="6">
-      <ion-button color="success" shape="round" expand="full">Editar</ion-button>
-    </ion-col>
-  </ion-row>
 </ion-content>

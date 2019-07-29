@@ -7,7 +7,7 @@ import { CrudOperations } from './../../shared/models/crud-operations.model';
 
 export abstract class CrudService<T> implements CrudOperations<T> {
   url: string;
-
+  token = environment.token;
   constructor(protected http: HttpClient, protected category: string) {
     this.url = `${environment.apiUrL}/${category}`;
   }
@@ -17,11 +17,11 @@ export abstract class CrudService<T> implements CrudOperations<T> {
   }
 
   update(path: string, t: T, options?: object): Observable<T> {
-    return this.http.put<T>(this.url + '/' + path, t);
+    return this.http.put<T>(`${this.url}/${this.token}/${path}`, t);
   }
 
   get(path: string, options?: object): Observable<T> {
-    return this.http.get<T>(this.url + '/' + path);
+    return this.http.get<T>(`${this.url}/${this.token}/${path}`);
   }
 
   getAll(options?: object): Observable<T[]> {

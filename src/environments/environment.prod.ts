@@ -1,6 +1,5 @@
 export const environment = {
   production: true,
-  apiUrL: 'https://portfolio-2c1cd.firebaseio.com',
-  token:
-    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6Ijg5NDM2ODUzLTlhZTEtNGE4MC05M2YzLWQ4MzQyZDQ5Y2Y0MCIsImVtYWlsIjoiZ25hZ3lAaW50ZWdyYW1lZGlhLmNvbSIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvcm9sZSI6IkFkbWluIiwibmJmIjoxNTYwMzI4MzE3LCJleHAiOjE1NjAzMjk3NTcsImlzcyI6IkNtc0NvcmUuQWRtaW4iLCJhdWQiOiJDbXNDb3JlIEFkbWluIEFQSSJ9.1bi8RSuXn4sWOCt9o8PZs_sm2gb2Uyir3ZPhayzDU-w',
+  apiUrL: 'http://test.imdpanel.com/service',
+  token: 'B939AEE9-4FA2-4FAC-993C-6C660AEE9276',
 };

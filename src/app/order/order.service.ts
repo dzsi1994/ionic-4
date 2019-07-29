@@ -8,7 +8,7 @@ import { CrudService } from '../core/services/crud.service';
 @Injectable()
 export class OrderService extends CrudService<any> {
   constructor(http: HttpClient) {
-    super(http, 'orders.json');
+    super(http, 'warehouse');
   }
   forgetPassword(object: any): Observable<boolean> {
     return this.http.post<any>(this.url + '/', object);

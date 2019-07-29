@@ -6,9 +6,8 @@ import { Store } from '@ngrx/store';
 import { debounceTime } from 'rxjs/operators';
 
 import { State } from './../store/index';
-import { setLoading, setBarCode } from '../store/action';
+import { setBarCode } from '../store/action';
 import { Observable } from 'rxjs';
-import { selectIsLoading } from '../store/reducers/global.reducer';
 import { untilDestroyed } from 'ngx-take-until-destroy';
 
 @Component({
@@ -17,19 +16,12 @@ import { untilDestroyed } from 'ngx-take-until-destroy';
   styleUrls: ['order.component.scss'],
 })
 export class OrderPage implements OnDestroy, OnInit {
-  loading$: boolean;
   name: any;
   detailsForm: FormGroup;
   @ViewChild('myInput') myInput;
 
   constructor(public formBuilder: FormBuilder, private navController: NavController, public store: Store<State>) {}
   ngOnInit() {
-    this.store
-      .select(selectIsLoading)
-      .pipe(untilDestroyed(this))
-      .subscribe(res => {
-        this.loading$ = res;
-      });
     this.detailsForm = this.buildForm();
     this.detailsForm.valueChanges
       .pipe(
@@ -50,9 +42,6 @@ export class OrderPage implements OnDestroy, OnInit {
     return this.formBuilder.group({
       barCode: ['', Validators.required],
     });
-  }
-  setLoading(loading: boolean) {
-    this.store.dispatch(setLoading({ loading }));
   }
   ngOnDestroy() {}
 }
