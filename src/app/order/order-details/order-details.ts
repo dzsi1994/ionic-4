@@ -3,6 +3,8 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NavController } from '@ionic/angular';
 import { untilDestroyed } from 'ngx-take-until-destroy';
+import { Observable } from 'rxjs';
+import { tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-order-details',
@@ -11,7 +13,7 @@ import { untilDestroyed } from 'ngx-take-until-destroy';
 })
 export class OrderDetailsPage implements OnInit, OnDestroy {
   id: string;
-  items: any[] = [];
+  items$: Observable<any>;
   loading = false;
   constructor(
     private route: ActivatedRoute,
@@ -28,20 +30,15 @@ export class OrderDetailsPage implements OnInit, OnDestroy {
   navigate() {
     this.navController.navigateForward(`order/${this.id}/publish`);
   }
-  /* getOrderDetails(orderId: any) {
-    this.orderService.get(orderId).subscribe((res: any) => {
-      this.items = res.data.items;
-    });
-  } */
-  getOrderDetails(orderId: any) {
+  getOrderDetails(orderId: string) {
     this.loading = true;
-    this.orderService
-      .getAll()
-      .pipe(untilDestroyed(this))
-      .subscribe((res: any) => {
+    console.log(orderId);
+    this.items$ = this.orderService.getAll().pipe(
+      tap(_ => {
         this.loading = false;
-        this.items = res;
-      });
+      }),
+    );
   }
+
   ngOnDestroy() {}
 }
