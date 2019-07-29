@@ -26,7 +26,7 @@ export class OrderPage implements OnDestroy, OnInit {
     this.detailsForm.valueChanges
       .pipe(
         untilDestroyed(this),
-        debounceTime(300),
+        debounceTime(600),
       )
       .subscribe(res => this.navigate());
   }
