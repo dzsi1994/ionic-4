@@ -38,11 +38,8 @@ export class OrderDetailsPage implements OnInit, OnDestroy {
       this.items = res;
     });
   }
-  navigate() {
-    this.navController.navigateForward(`order/${this.id}/publish`);
-  }
-  navigateToEdit() {
-    this.navController.navigateForward(`order/${this.id}/edit`);
+  navigate(where: string) {
+    this.navController.navigateForward(`order/${this.id}/${where}`);
   }
   getOrderDetails() {
     this.loading = true;

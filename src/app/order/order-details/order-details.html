@@ -40,16 +40,16 @@
   </ion-card>
   <ion-row *ngIf="items && !errors.length">
     <ion-col size="6">
-      <ion-button color="primary" shape="round" expand="full" (click)="navigate()">Ubicar</ion-button>
+      <ion-button color="primary" shape="round" expand="full" (click)="navigate('publish')">Ubicar</ion-button>
     </ion-col>
     <ion-col size="6">
-      <ion-button color="secondary" shape="round" expand="full" (click)="presentAlertConfirm()">Delete</ion-button>
+      <ion-button color="secondary" shape="round" expand="full" (click)="navigate('delete')">Delete</ion-button>
     </ion-col>
     <ion-col size="6">
-      <ion-button color="tertiary" shape="round" expand="full" (click)="navigateToEdit()">Reponer</ion-button>
+      <ion-button color="tertiary" shape="round" expand="full" (click)="navigate('edit')">Editar</ion-button>
     </ion-col>
     <ion-col size="6">
-      <ion-button color="success" shape="round" expand="full">Editar</ion-button>
+      <ion-button color="success" shape="round" expand="full">dsadasas</ion-button>
     </ion-col>
   </ion-row>
 </ion-content>

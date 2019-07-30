@@ -1,0 +1,24 @@
+<ion-content>
+  <app-header></app-header>
+  <ion-card class="header">
+    <ion-card-title>Picking</ion-card-title>
+    <ion-card-content>
+      <ng-container *ngIf="package">
+        <div class="row">
+          <span class="bold bold__black">{{package.Reference}}</span>
+          <span class="bold bold__red">{{package.Location}}</span>
+        </div>
+        <div class="row">
+          <span class="">{{package.ModificationDate | date: 'dd/MM/yyyy' }}</span>
+          <!-- <div class="" style="text-align: center;">NINESTAR
+            <div>NS19-02</div>
+          </div> -->
+        </div>
+      </ng-container>
+    </ion-card-content>
+  </ion-card>
+
+  <ng-container *ngIf="package">
+    <app-delete-item (update)="update($event)" [errors]="errors"></app-delete-item>
+  </ng-container>
+</ion-content>

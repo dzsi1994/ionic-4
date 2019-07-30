@@ -1,0 +1,38 @@
+<ion-content>
+  <ion-card class="header">
+    <ion-card-title>Crear nuevo codigo</ion-card-title>
+  </ion-card>
+  <ion-card>
+    <ion-card-content>
+      <ion-row justify-content-center align-items-center>
+        <form [formGroup]="detailsForm" (ngSubmit)="onSubmit()">
+          <ion-col size="12">
+            <ion-item>
+              <ion-label>Barcode</ion-label>
+              <ion-input formControlName="barcode" autofocus="true"></ion-input>
+            </ion-item>
+          </ion-col>
+          <ion-col size="12">
+            <ion-item>
+              <ion-label>SKU:</ion-label>
+              <ion-input formControlName="sku"></ion-input>
+            </ion-item>
+          </ion-col>
+          <ion-col size="12">
+            <ion-item>
+              <ion-label>Description:</ion-label>
+              <ion-textarea formControlName="descripcion"></ion-textarea>
+            </ion-item>
+          </ion-col>
+          <!-- <ng-container *ngFor="let error of errors;">
+          <p class="red">{{error.Text}}</p>
+        </ng-container> -->
+          <ion-col size="12">
+            <ion-button color="success" shape="round" type="submit" expand="full">Crear
+            </ion-button>
+          </ion-col>
+        </form>
+      </ion-row>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

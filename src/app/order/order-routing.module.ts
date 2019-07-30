@@ -4,6 +4,8 @@ import { OrderPage } from './order.page';
 import { OrderDetailsPage } from './order-details/order-details';
 import { PublishPage } from './publish/publish';
 import { EditComponent } from './edit/edit.component';
+import { DeleteBarcodeComponent } from './delete-barcode/delete-barcode.component';
+import { AddNewCodeComponent } from './add-new-code/add-new-code.component';
 
 const routes: Routes = [
   {
@@ -21,6 +23,14 @@ const routes: Routes = [
   {
     path: ':orderId/edit',
     component: EditComponent,
+  },
+  {
+    path: ':orderId/delete',
+    component: DeleteBarcodeComponent,
+  },
+  {
+    path: ':orderId/add-new',
+    component: AddNewCodeComponent,
   },
 ];
 
