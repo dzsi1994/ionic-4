@@ -2,7 +2,36 @@
   <app-header></app-header>
   <ion-card>
     <ion-card-content>
-      <p>Edit page just works</p>
+      <ng-container *ngIf="package">
+        <div class="row">
+          <span class="bold bold__black">{{package.Reference}}</span>
+          <span class="bold bold__red">{{package.Location}}</span>
+        </div>
+        <div class="row">
+          <span class="">{{package.ModificationDate | date: 'dd/MM/yyyy' }}</span>
+          <!-- <div class="" style="text-align: center;">NINESTAR
+          <div>NS19-02</div>
+        </div> -->
+        </div>
+      </ng-container>
+    </ion-card-content>
+  </ion-card>
+  <ion-card>
+    <ion-card-content>
+      <ng-container *ngIf="package">
+        <ion-row *ngFor="let item of package.Detail; let last = last;" align-items-center>
+          <ion-col size="4">
+            Barcode: {{item.Barcode}}
+          </ion-col>
+          <ion-col size="4">
+            {{item.Description}}
+          </ion-col>
+          <ion-col size="4">
+            Q: {{item.Quantity}}
+          </ion-col>
+          <div class="line" *ngIf="!last"></div>
+        </ion-row>
+      </ng-container>
     </ion-card-content>
   </ion-card>
 </ion-content>

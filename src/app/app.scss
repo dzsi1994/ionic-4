@@ -4,3 +4,35 @@
 // styles are for the entire app and not just one component. Additionally, this 
 // file can hold Sass mixins, functions, and placeholder classes to be imported 
 // and used throughout the application.
+.bold {
+    text-transform: uppercase;
+    font-size: 18px;
+    font-weight: bold;
+
+    &__black {
+        color: black;
+    }
+
+    &__red {
+        color: red;
+    }
+
+    &--small {
+        font-size: 14px;
+    }
+}
+
+.line {
+    height: 1px;
+    background: #707070;
+    width: 80%;
+    margin: 0 auto;
+    margin-top: 10px;
+}
+
+ion-spinner {
+    width: 150px;
+    height: 150px;
+    stroke: #444;
+    fill: #222;
+}
