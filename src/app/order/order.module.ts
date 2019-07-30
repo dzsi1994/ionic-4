@@ -10,10 +10,11 @@ import { OrderService } from './order.service';
 import { SharedModule } from '../shared/shared.module';
 import { PublishPage } from './publish/publish';
 import { EditComponent } from './edit/edit.component';
+import { ItemComponent } from './edit/item/item.component';
 
 @NgModule({
   imports: [CommonModule, SharedModule, FormsModule, IonicModule, OrderRoutingModule, ReactiveFormsModule],
   providers: [OrderService],
-  declarations: [OrderPage, OrderDetailsPage, PublishPage, EditComponent],
+  declarations: [OrderPage, OrderDetailsPage, PublishPage, EditComponent, ItemComponent],
 })
 export class OrderPageModule {}

@@ -8,6 +8,7 @@ import { Observable } from 'rxjs';
 import { tap, map } from 'rxjs/operators';
 import { Store } from '@ngrx/store';
 import { setActivePackage } from 'src/app/store/action';
+import { selectPackage } from 'src/app/store/reducers/global.reducer';
 
 @Component({
   selector: 'app-order-details',
@@ -33,6 +34,9 @@ export class OrderDetailsPage implements OnInit, OnDestroy {
     if (this.id) {
       this.getOrderDetails();
     }
+    this.store.select(selectPackage).subscribe(res => {
+      this.items = res;
+    });
   }
   navigate() {
     this.navController.navigateForward(`order/${this.id}/publish`);
@@ -51,9 +55,8 @@ export class OrderDetailsPage implements OnInit, OnDestroy {
           this.errors = _.Errores;
           this.store.dispatch(setActivePackage({ selectedPackage: _.Data }));
         }),
-        map((res: any) => res.Data),
       )
-      .subscribe(res => (this.items = res));
+      .subscribe(_ => console.log());
   }
   delete() {
     this.orderService.delete(this.id).subscribe(res => {

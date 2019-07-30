@@ -32,11 +32,10 @@ export class PublishPage implements OnInit {
     });
   }
   onSubmit() {
-    const data = this.detailsForm.getRawValue();
     const location = {
       location: this.detailsForm.value.location,
     };
-    this.orderService.update(`location/${data.Barcode}`, location).subscribe(res => {
+    this.orderService.update(`location/${this.id}`, location).subscribe(res => {
       console.log(res);
     });
   }
