@@ -8,6 +8,7 @@ import { untilDestroyed } from 'ngx-take-until-destroy';
 import { ActivatedRoute } from '@angular/router';
 import { tap } from 'rxjs/operators';
 import { setActivePackage } from 'src/app/store/action';
+import { Actions } from './item/item.component';
 
 @Component({
   selector: 'app-edit',
@@ -20,6 +21,7 @@ export class EditComponent implements OnInit, OnDestroy {
   text = '';
   private quantity: any = {};
   barcode = '';
+  errors: any[] = [];
   constructor(public store: Store<State>, private orderService: OrderService, private route: ActivatedRoute) {}
 
   ngOnInit() {
@@ -32,21 +34,35 @@ export class EditComponent implements OnInit, OnDestroy {
       });
   }
   update(item) {
+    if (item.type === Actions.edit) {
+      this.updateQuantity(item.data);
+    } else if (item.type === Actions.add) {
+      this.addNewToPackage(item.data);
+    }
+  }
+  updateQuantity(data: any) {
     const body = {};
     this.orderService
-      .update(`detail/${this.packageId}/${item.barcode}/${item.quantity}`, body)
+      .update(`detail/${this.packageId}/${data.barcode}/${data.quantity}`, body)
       .pipe(
         tap(_ => {
+          this.errors = _.Errores;
           this.store.dispatch(setActivePackage({ selectedPackage: _.Data }));
         }),
       )
       .subscribe(res => {});
   }
-  change(ev) {
-    this.quantity.quantity = null;
-    this.quantity = {
-      quantity: parseInt(ev.value, 10),
-    };
+  addNewToPackage(data: any) {
+    const body = {};
+    this.orderService
+      .save(`detail/${this.packageId}/${data.barcode}/${data.quantity}`, body)
+      .pipe(
+        tap(_ => {
+          this.errors = _.Errores;
+          this.store.dispatch(setActivePackage({ selectedPackage: _.Data }));
+        }),
+      )
+      .subscribe(res => {});
   }
   ngOnDestroy() {}
 }

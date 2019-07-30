@@ -12,8 +12,8 @@ export abstract class CrudService<T> implements CrudOperations<T> {
     this.url = `${environment.apiUrL}/${category}`;
   }
 
-  save(t: T, options?: object): Observable<T> {
-    return this.http.post<T>(this.url, t);
+  save(path: string, t: T, options?: object): Observable<T> {
+    return this.http.post<T>(`${this.url}/${this.token}/${path}`, t);
   }
 
   update(path: string, t: T, options?: object): Observable<T> {

@@ -14,8 +14,16 @@
             <ion-input formControlName="quantity"></ion-input>
           </ion-item>
         </ion-col>
+        <ng-container *ngFor="let error of errors;">
+          <p class="red">{{error.Text}}</p>
+        </ng-container>
         <ion-col size="12">
-          <ion-button color="success" shape="round" type="submit" type="submit" expand="full">Actualizar
+          <ion-button color="success" shape="round" type="submit" expand="full">Actualizar
+          </ion-button>
+        </ion-col>
+        <ion-col size="12">
+          <ion-button color="primary" shape="round" type="button" (click)="presentAlertConfirm(false)" expand="full">
+            Añadir
           </ion-button>
         </ion-col>
       </form>

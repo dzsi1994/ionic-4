@@ -2,6 +2,11 @@ import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AlertController } from '@ionic/angular';
 
+export enum Actions {
+  add = 'add',
+  edit = 'edit',
+}
+
 @Component({
   selector: 'app-item',
   templateUrl: './item.component.html',
@@ -10,6 +15,7 @@ import { AlertController } from '@ionic/angular';
 export class ItemComponent implements OnInit {
   @Output() update = new EventEmitter<any>();
   @Input() item: any;
+  @Input() errors: any[];
   barcode = '';
   detailsForm: FormGroup;
   constructor(private formBuilder: FormBuilder, private alertCtrl: AlertController) {}
@@ -22,15 +28,8 @@ export class ItemComponent implements OnInit {
       });
     }
   }
-  /* onUpdate() {
-    const data = {
-      quantity: this.quantity.quantity,
-      barcode: this.barcode,
-    };
-    this.update.emit(data);
-  } */
   onSubmit() {
-    this.presentAlertConfirm();
+    this.presentAlertConfirm(true);
   }
   buildForm(): FormGroup {
     return this.formBuilder.group({
@@ -38,7 +37,7 @@ export class ItemComponent implements OnInit {
       quantity: ['', Validators.required],
     });
   }
-  async presentAlertConfirm() {
+  async presentAlertConfirm(edit?: boolean) {
     const alert = await this.alertCtrl.create({
       header: 'Confirmation',
       message: 'Are you sure ?? ',
@@ -55,7 +54,11 @@ export class ItemComponent implements OnInit {
           text: 'Okay',
           cssClass: 'primary',
           handler: () => {
-            this.update.emit(this.detailsForm.value);
+            const data = {
+              data: this.detailsForm.value,
+              type: edit === true ? Actions.edit : Actions.add,
+            };
+            this.update.emit(data);
             this.detailsForm.reset();
           },
         },

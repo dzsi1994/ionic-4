@@ -18,6 +18,6 @@
   </ion-card>
 
   <ng-container *ngIf="package">
-    <app-item (update)="update($event)"></app-item>
+    <app-item (update)="update($event)" [errors]="errors"></app-item>
   </ng-container>
 </ion-content>
