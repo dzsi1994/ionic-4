@@ -15,11 +15,14 @@
           </ion-item>
         </ion-col>
         <ng-container *ngFor="let error of errors;">
-          <p class="red">{{error.Text}}</p>
-          <div *ngIf="error.Reference === 'ERR001'">
-            <ion-button expand="block" (click)="navigate()" type="button" color="medium">Crear codigo de barra!
-            </ion-button>
-          </div>
+          <ion-col size="12">
+            <p class="red">{{error.Text}}</p>
+            <div *ngIf="error.Reference === 'ERR001'">
+              <ion-button expand="block" (click)="navigate()" type="button" color="medium">
+                Crear codigo de barra!
+              </ion-button>
+            </div>
+          </ion-col>
         </ng-container>
         <ion-col size="12">
           <ion-button color="success" shape="round" type="submit" expand="full">Actualizar
