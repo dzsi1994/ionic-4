@@ -20,6 +20,7 @@ export class OrderDetailsPage implements OnInit, OnDestroy {
   items: any;
   loading = false;
   errors: any[] = [];
+  errorMessage: any;
   constructor(
     private route: ActivatedRoute,
     private orderService: OrderService,
@@ -44,7 +45,7 @@ export class OrderDetailsPage implements OnInit, OnDestroy {
   getOrderDetails() {
     this.loading = true;
     this.orderService
-      .get(this.id)
+      .get(`${this.id}`)
       .pipe(
         untilDestroyed(this),
         tap(_ => {
@@ -53,7 +54,13 @@ export class OrderDetailsPage implements OnInit, OnDestroy {
           this.store.dispatch(setActivePackage({ selectedPackage: _.Data }));
         }),
       )
-      .subscribe(_ => console.log());
+      .subscribe(
+        _ => (this.items = _.Data),
+        err => {
+          this.loading = false;
+          this.errorMessage = err;
+        },
+      );
   }
   delete() {
     this.orderService.delete(this.id).subscribe(res => {

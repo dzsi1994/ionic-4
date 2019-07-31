@@ -52,4 +52,7 @@
       <ion-button color="success" shape="round" expand="full">dsadasas</ion-button>
     </ion-col>
   </ion-row>
+  <p *ngIf="loading">LOADING...</p>
+  <p *ngIf="!loading">HTTP FINISHED</p>
+  <p *ngIf="errorMessage">{{errorMessage | json}}</p>
 </ion-content>
