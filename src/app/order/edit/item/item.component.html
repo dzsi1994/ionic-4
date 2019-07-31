@@ -16,6 +16,9 @@
         </ion-col>
         <ng-container *ngFor="let error of errors;">
           <p class="red">{{error.Text}}</p>
+          <div *ngIf="error.Reference === 'ERR001'">
+            <p (click)="navigate()">Pasa la creacion de codigo de barras!</p>
+          </div>
         </ng-container>
         <ion-col size="12">
           <ion-button color="success" shape="round" type="submit" expand="full">Actualizar

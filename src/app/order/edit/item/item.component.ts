@@ -1,6 +1,7 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { AlertController } from '@ionic/angular';
+import { AlertController, NavController } from '@ionic/angular';
+import { ActivatedRoute } from '@angular/router';
 
 export enum Actions {
   add = 'add',
@@ -18,9 +19,15 @@ export class ItemComponent implements OnInit {
   @Input() errors: any[];
   barcode = '';
   detailsForm: FormGroup;
-  constructor(private formBuilder: FormBuilder, private alertCtrl: AlertController) {}
+  constructor(
+    private formBuilder: FormBuilder,
+    private alertCtrl: AlertController,
+    private navController: NavController,
+    private route: ActivatedRoute,
+  ) {}
 
   ngOnInit() {
+    this.barcode = this.route.snapshot.paramMap.get('orderId');
     this.detailsForm = this.buildForm();
     if (this.item) {
       this.detailsForm.patchValue({
@@ -30,6 +37,9 @@ export class ItemComponent implements OnInit {
   }
   onSubmit() {
     this.presentAlertConfirm(true);
+  }
+  navigate() {
+    this.navController.navigateRoot([`order/${this.barcode}/add-new`]);
   }
   buildForm(): FormGroup {
     return this.formBuilder.group({
