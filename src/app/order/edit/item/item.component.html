@@ -11,13 +11,14 @@
         <ion-col size="12">
           <ion-item>
             <ion-label>Quantity:</ion-label>
-            <ion-input formControlName="quantity"></ion-input>
+            <ion-input type="number" formControlName="quantity"></ion-input>
           </ion-item>
         </ion-col>
         <ng-container *ngFor="let error of errors;">
           <p class="red">{{error.Text}}</p>
           <div *ngIf="error.Reference === 'ERR001'">
-            <p (click)="navigate()">Pasa la creacion de codigo de barras!</p>
+            <ion-button expand="block" (click)="navigate()" type="button" color="medium">Crear codigo de barra!
+            </ion-button>
           </div>
         </ng-container>
         <ion-col size="12">

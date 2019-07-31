@@ -11,22 +11,23 @@ import { SharedModule } from '../shared/shared.module';
 import { PublishPage } from './publish/publish';
 import { EditComponent } from './edit/edit.component';
 import { ItemComponent } from './edit/item/item.component';
-import { DeleteBarcodeComponent } from './delete-barcode/delete-barcode.component';
-import { DeleteItemComponent } from './delete-barcode/delete-item/delete-item.component';
+import { DeleteItemComponent, DeleteBarcodeComponent } from './delete-barcode';
 import { AddNewCodeComponent } from './add-new-code/add-new-code.component';
+
+const components = [
+  OrderPage,
+  OrderDetailsPage,
+  PublishPage,
+  EditComponent,
+  ItemComponent,
+  DeleteBarcodeComponent,
+  AddNewCodeComponent,
+  DeleteItemComponent,
+];
 
 @NgModule({
   imports: [CommonModule, SharedModule, FormsModule, IonicModule, OrderRoutingModule, ReactiveFormsModule],
   providers: [OrderService],
-  declarations: [
-    OrderPage,
-    OrderDetailsPage,
-    PublishPage,
-    EditComponent,
-    ItemComponent,
-    DeleteBarcodeComponent,
-    AddNewCodeComponent,
-    DeleteItemComponent,
-  ],
+  declarations: [components],
 })
 export class OrderPageModule {}
