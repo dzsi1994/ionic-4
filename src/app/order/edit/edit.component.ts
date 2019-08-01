@@ -2,7 +2,6 @@ import { OrderService } from './../order.service';
 import { State } from './../../store/index';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
 import { selectPackage } from 'src/app/store/reducers/global.reducer';
 import { untilDestroyed } from 'ngx-take-until-destroy';
 import { ActivatedRoute } from '@angular/router';
@@ -19,7 +18,6 @@ export class EditComponent implements OnInit, OnDestroy {
   package: any = {};
   packageId: string;
   text = '';
-  private quantity: any = {};
   barcode = '';
   errors: any[] = [];
   constructor(public store: Store<State>, private orderService: OrderService, private route: ActivatedRoute) {}
