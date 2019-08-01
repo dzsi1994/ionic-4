@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Location } from '@angular/common';
+import { NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-header',
@@ -7,10 +8,12 @@ import { Location } from '@angular/common';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
-  constructor(private location: Location) {}
+  @Input() url: string;
+  constructor(private location: Location, private navController: NavController) {}
 
   ngOnInit() {}
   back() {
-    this.location.back();
+    const url: string = this.url !== undefined ? this.url : 'order';
+    this.navController.navigateRoot(`${url}`);
   }
 }

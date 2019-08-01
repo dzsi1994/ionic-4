@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 import { OrderService } from './../order.service';
+import { NavController, ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-publish',
@@ -14,7 +15,14 @@ export class PublishPage implements OnInit {
   items: any[] = [];
   loading = false;
   detailsForm: FormGroup;
-  constructor(private route: ActivatedRoute, private orderService: OrderService, private formBuilder: FormBuilder) {}
+  @ViewChild('locationInput') locationInput;
+  constructor(
+    private route: ActivatedRoute,
+    private navController: NavController,
+    private orderService: OrderService,
+    private formBuilder: FormBuilder,
+    public toastController: ToastController,
+  ) {}
 
   ngOnInit() {
     this.detailsForm = this.buildForm();
@@ -24,6 +32,16 @@ export class PublishPage implements OnInit {
         Barcode: this.id,
       });
     }
+    setTimeout(() => {
+      this.locationInput.setFocus();
+    }, 500);
+  }
+  async presentToast() {
+    const toast = await this.toastController.create({
+      message: 'Your settings have been saved.',
+      duration: 2000,
+    });
+    toast.present();
   }
   buildForm(): FormGroup {
     return this.formBuilder.group({
@@ -36,7 +54,12 @@ export class PublishPage implements OnInit {
       location: this.detailsForm.value.location,
     };
     this.orderService.update(`location/${this.id}`, location).subscribe(res => {
-      console.log(res);
+      if (res.Correcto) {
+        this.presentToast();
+        setTimeout(() => {
+          this.navController.navigateRoot(`order/${this.id}`);
+        }, 1500);
+      }
     });
   }
 }

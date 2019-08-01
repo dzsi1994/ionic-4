@@ -1,12 +1,12 @@
 <ion-content>
-  <app-header></app-header>
+  <app-header [url]="'home'"></app-header>
 
   <ion-card>
     <ion-card-content>
       <form [formGroup]="detailsForm">
         <ion-item>
           <ion-label>Barcode</ion-label>
-          <ion-input formControlName="barCode" autofocus="true"></ion-input>
+          <ion-input formControlName="barCode" #barCodeInput></ion-input>
         </ion-item>
       </form>
     </ion-card-content>

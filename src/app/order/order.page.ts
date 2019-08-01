@@ -7,7 +7,6 @@ import { debounceTime } from 'rxjs/operators';
 
 import { State } from './../store/index';
 import { setBarCode } from '../store/action';
-import { Observable } from 'rxjs';
 import { untilDestroyed } from 'ngx-take-until-destroy';
 
 @Component({
@@ -18,17 +17,14 @@ import { untilDestroyed } from 'ngx-take-until-destroy';
 export class OrderPage implements OnDestroy, OnInit {
   name: any;
   detailsForm: FormGroup;
-  @ViewChild('myInput') myInput;
+  @ViewChild('barCodeInput') barCodeInput;
 
   constructor(public formBuilder: FormBuilder, private navController: NavController, public store: Store<State>) {}
   ngOnInit() {
-    this.detailsForm = this.buildForm();
-    this.detailsForm.valueChanges
-      .pipe(
-        untilDestroyed(this),
-        debounceTime(1000),
-      )
-      .subscribe(res => this.navigate());
+    this.buildForm();
+    setTimeout(() => {
+      this.barCodeInput.setFocus();
+    }, 500);
   }
   navigate() {
     const barcode = this.detailsForm.get('barCode').value;
@@ -38,10 +34,16 @@ export class OrderPage implements OnDestroy, OnInit {
     this.store.dispatch(setBarCode({ barCode: barcode }));
     this.navController.navigateRoot([`order`, barcode]);
   }
-  buildForm(): FormGroup {
-    return this.formBuilder.group({
+  buildForm() {
+    this.detailsForm = this.formBuilder.group({
       barCode: ['', Validators.required],
     });
+    this.detailsForm.valueChanges
+      .pipe(
+        untilDestroyed(this),
+        debounceTime(1000),
+      )
+      .subscribe(_ => this.navigate());
   }
   ngOnDestroy() {}
 }
