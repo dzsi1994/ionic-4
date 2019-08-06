@@ -11,4 +11,7 @@ export class HomePage {
   navigate() {
     this.router.navigateByUrl(`order`);
   }
+  add() {
+    alert('button clicked');
+  }
 }

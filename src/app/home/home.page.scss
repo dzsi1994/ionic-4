@@ -25,4 +25,9 @@
         --border-style: 1px solid #707070;
         --border-radius: 10px;
     }
+
+    &__content {
+        text-align: center;
+        height: calc(100vh - 10px);
+    }
 }

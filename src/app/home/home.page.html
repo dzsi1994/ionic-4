@@ -1,12 +1,19 @@
 <ion-content>
   <ion-card class="welcome-card">
-    <ion-card-content style="text-align: center">
+    <ion-card-content class="welcome-card__content">
       <h1>imERP</h1>
       <p>PORTABLE MODULE</p>
+      <ion-button (click)="navigate()" class="purple" expand="full">
+        Bultos
+      </ion-button>
+      <!-- fab placed to the bottom start -->
+      <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+        <ion-fab-button (click)="add()">
+          <ion-icon name="add"></ion-icon>
+        </ion-fab-button>
+      </ion-fab>
     </ion-card-content>
-    <ion-button (click)="navigate()" class="purple" expand="full">
-      Bultos
-    </ion-button>
+
   </ion-card>
 
 </ion-content>
